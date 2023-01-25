@@ -26,11 +26,10 @@ struct BenchStruct {
 fn make_request(counts: Arc<Mutex<Vec<u128>>>, i: i32) {
     let mut inner_counts = Vec::<u128>::new();
     for j in 0..100 {
- //       println!("Executing call: {} -> {}", i, j);
         let status: bool;
         let now = Instant::now();
         {
-            let url = std::env::var("WASM_ENDPOINT").unwrap();//"https://wasm-bench-lp6uomye.fermyon.app/";
+            let url = std::env::var("WASM_ENDPOINT").unwrap();
             let mut bench = BenchStruct::default();
             bench.id = i;
             let body = serde_json::to_string(&bench).expect("should not happen");
